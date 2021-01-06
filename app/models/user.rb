@@ -8,4 +8,17 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
+  
+  has_many :carts
+  has_many :orders
+  
+  validates :name, presence: true
+
+  def self.from_social_provider(provider, user_params)
+    where( uid: user_params[:uid], provider: provider).first_or_create do |user|
+      user.password = Devise.friendly_token[0, 20]
+      user.assign_attributes user_params.except('id')
+    end
+  end
+
 end

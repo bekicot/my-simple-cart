@@ -18,9 +18,11 @@ gem 'puma', '~> 4.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem 'active_model_serializers', '~> 0.10.0'
 # gem 'devise'
 gem 'devise_token_auth'
+gem 'typhoeus'
+gem 'searchkick'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -28,9 +30,20 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # gem 'rack-cors'
 
 group :development, :test do
+  gem 'pry-rails'
+  %w[rspec-core rspec-rails rspec-expectations rspec-mocks rspec-support].each do |lib|
+    gem lib, :git => "https://github.com/rspec/#{lib}.git", :branch => 'main'
+  end
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
+group :test do
+  gem 'factory_bot_rails'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem 'database_cleaner'
+  gem 'elasticsearch-extensions'
+end
+# I used faker master branch so as to have the gem latest version and prevent unnecessary errors.
 
 group :development do
   gem 'listen', '~> 3.2'
