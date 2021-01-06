@@ -17,7 +17,7 @@ class CartItem < ApplicationRecord
   private
 
   def valid_stock?
-    errors.add(:quantity, "product is out of stock") if product_variant.quantity.to_i < quantity.to_i
+    errors.add(:quantity, "product is out of stock") if product_variant && product_variant.quantity.to_i < quantity.to_i
   end
 
   def set_total
