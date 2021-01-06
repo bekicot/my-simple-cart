@@ -4,8 +4,8 @@ module Api
       before_action :authenticate_api_user!
 
       def index
-        orders = current_api_user.orders.includes(:store, :courier, order_items: {product_variant: [:product, {product_variant_details: :variant_option}]})
-        render status: 200, json: orders
+        invoices = current_api_user.invoices.includes(orders: [:store, :courier, order_items: {product_variant: [:product, {product_variant_details: :variant_option}]}])
+        render status: 200, json: invoices
       end
 
       def checkout
@@ -21,7 +21,7 @@ module Api
       private
 
       def order_params
-        params.permit(checkout: [:store_id, items: [:product_variant_id, :quantity, :notes], courier: [:id, :price]])
+        params.permit(:order, checkout: [:store_id, items: [:product_variant_id, :quantity, :notes], courier: [:id, :price]])
       end
       
     end

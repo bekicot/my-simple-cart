@@ -1,5 +1,7 @@
 class OrderItemSerializer < ActiveModel::Serializer
-  attributes :id, :quantity, :price, :discount, :total, :notes, :product, :product_variant_id, :variant_name
+  attributes :id, :quantity, :price, :discount, :total, :notes, :product, :product_variant, :variant_name
+  
+  belongs_to :product_variant
 
   def product
     object.product_variant.product

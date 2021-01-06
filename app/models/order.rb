@@ -26,9 +26,14 @@ class Order < ApplicationRecord
           price: product_variant.price,
           quantity: item[:quantity],
           discount: product_variant.discount,
-          notes: item[:notes]
+          notes: item[:notes],
+          order: order
         )
-        order.order_items << order_item
+        if order_item.valid?
+          order.order_items << order_item
+        else
+          return [false, order_item.errors]
+        end
       end
       if order.valid?
         orders << order
@@ -42,6 +47,11 @@ class Order < ApplicationRecord
     return true
   end
 
+  def remove_cart
+    cart = Cart.where(user_id: user_id, store_id: store_id).first
+    cart.cart_items.where(product_variant_id: order_items.map(&:product_variant_id)).map(&:delete_with_parent_if_no_child)
+  end
+
   private
 
   def set_total
@@ -49,9 +59,5 @@ class Order < ApplicationRecord
     self.total = total_price+delivery_cost
   end
 
-  def remove_cart
-    cart = Cart.where(user_id: user_id, store_id: store_id).first
-    cart.cart_items.where(product_variant_id: order_items.map(&:product_variant_id)).map(&:delete_with_parent_if_no_child)
-  end
-
+  
 end
