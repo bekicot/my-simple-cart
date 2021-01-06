@@ -1,32 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
----SIMPLE CART APP--
+# SIMPLE CART APP
 This project only contains API only.
 
-How to run :
+**How to run :
 1. Make sure you have install elasticsearch in your local machine and ruby 2.7.1
 2. checkout project from github : https://github.com/syafik/my-simple-cart/tree/master
 3. bundle install
@@ -36,38 +13,39 @@ How to run :
 7. run elasticsearch in your local machine
 8. rails s
 
-* API path and sample how to call
-1. Registration
-  POST /api/v1/auth
-  Host: localhost:3000
-  Content-Type: application/json
+**API path and sample how to call**
 
+1. Registration.
+  POST /api/v1/auth.
+  Host: localhost:3000.
+  Content-Type: application/json.
   { 
-      
       "email": "your@email.com",
       "password": "yourpassword123",
       "passwrod_confirmation": "yourpassword123",
       "name": "Your Name"
   }
 
-2. Login
-    POST /api/v1/auth/sign_in
-    Host: localhost:3000
-    Content-Type: application/json
+2. Login.
+    POST /api/v1/auth/sign_in.
+    Host: localhost:3000.
+    Content-Type: application/json.
     {
         "email": "your@email.com",
         "password": "yourpassword123"
-    }
+    }.
 
-    ** From Registration and Login API we will have response headers that we will use to define user session in each API request that required login user.
-       * access-token
-       * client
-       * token-type
-       * expiry
-       * uid
-3. API for listing products
-   GET /api/v1/products
-   Host: localhost:3000
+    ** From Registration and Login API we will have response headers that we will use to define user session in 
+    each API request that required login user.
+    1. access-token
+    2. client
+    3. token-type
+    4. expiry
+    5. uid
+
+3. API for listing products.
+   GET /api/v1/products.
+   Host: localhost:3000.
    * for search by name of product: 
      GET /api/v1/products?q=shirt
    * for filter by store : 
