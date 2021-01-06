@@ -3,7 +3,7 @@
 # SIMPLE CART APP
 This project only contains API only.
 
-**How to run :
+**How to run :***
 1. Make sure you have install elasticsearch in your local machine and ruby 2.7.1
 2. checkout project from github : https://github.com/syafik/my-simple-cart/tree/master
 3. bundle install
@@ -13,7 +13,7 @@ This project only contains API only.
 7. run elasticsearch in your local machine
 8. rails s
 
-**API path and sample how to call**
+***API path and sample how to call***
 
 1. Registration
   ```sh
@@ -141,8 +141,11 @@ This project only contains API only.
   expiry: 1611053732
   uid: uid_mu
   ```
-
-** Running RSPEC Unit Test
+  ***collection API postman for testing, can be imported with this link:***
+  ```sh 
+  https://www.getpostman.com/collections/049d7e17cecab86318a9
+  ```
+***=Running RSPEC Unit Test***
 ```sh
 bundle exec rspec -f d  spec/models/
 ```
